@@ -11,12 +11,14 @@ Name = "Default VPC"
 #WordPress EC2 instance
 resource "aws_instance" "my-rds-wp" {
 
-  ami                     =  "ami-0742b4e673072066f"
-  instance_type           =  "t2.micro"
+ # ami                     =  "ami-0742b4e673072066f"
+  ami                     =  var.AMI
+  #instance_type           =  "t2.micro"
+  instance_type           =  var.INSTANCE_TYPE
   iam_instance_profile    =  "${aws_iam_instance_profile.test_profile.name}"
-  key_name                = "${aws_key_pair.ec2-key.id}"
+  key_name                =  "${aws_key_pair.ec2-key.id}"
   security_groups         =  [aws_security_group.wp_efs_sg.name]
-  #user_data              =  "${file("bootstrap1.sh")}"
+  user_data              =  "${file("bootstrap1.sh")}"
 
   tags = {
     Name   = "RDS_WP" 

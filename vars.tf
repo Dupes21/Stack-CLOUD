@@ -38,3 +38,11 @@ variable "RDS_DB_USER" {}
 variable "RDS_DB_PASSWORD"{}
 
 variable "RDS_ENDPOINT" {}
+
+variable "AMI" {
+  
+}
+
+variable "INSTANCE_TYPE" {
+  
+}
