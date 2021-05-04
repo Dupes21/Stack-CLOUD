@@ -1,0 +1,7 @@
+AWS_ACCESS_KEY="AKIAY65SY2GAQK6IF6FY"
+AWS_SECRET_KEY="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"
+AWS_REGION="us-east-1"
+RDS_DB_NAME="wordpressdb"
+RDS_DB_USER="admin"
+RDS_DB_PASSWORD="stackinc"
+RDS_ENDPOINT="wordpressinstance.cuyp9p5zywip.us-east-1.rds.amazonaws.com"

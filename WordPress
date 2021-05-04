@@ -1,0 +1,14 @@
+
+resource "aws_instance" "my-instance" {
+  count         	       = 1
+  ami                    = "ami-0742b4e673072066f"
+  instance_type          = "t2.micro"
+  iam_instance_profile   = "${aws_iam_instance_profile.test_profile.name}"
+  key_name               = "MyEC2Keypair"
+  vpc_security_group_ids = ["sg-012c0c19d849900ca"]
+  user_data              = "${file("bootstrap.sh")}"
+ 
+  tags = {
+    Name   = "WordPress"
+  }
+}
