@@ -1,0 +1,10 @@
+resource "aws_key_pair" "ec2-key" {
+  key_name   = "ec2-key"
+  public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCVoRtB5PSXPxKEvIkmWzIGnT7mrfpAjXNUsx5xRQRkren9MzI2oKUKB2gKJWwclEmX0XLk13LxfAFC7IHdz44MhD1vwqk5Q+Zof750VuKmkBN6xdb19CguXprkkT2T/Z1XlNHYzxL9Rqa9QzQUc/p4YdfQNlYrnAxbPm03QtUJ8D7rpY7n95pZIWwccEDWvFsCcDDh4mKbezNjGQ7Xk0ALK36mnyyqC7WSxLKbYmF2ujRV2X8dF+kQL6ls+iOKTgmVajCGq2kZauSIiVQBkdafwhW+8HvzRPsTU7LNfDBrMFOL3gIm58o4Yf/dsA2lvysK2A5kr2aIVolDEmiYvGCL"
+}
+
+resource "tls_private_key" "mykey" {
+  algorithm   = "RSA"
+  #public_key_pem = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCVoRtB5PSXPxKEvIkmWzIGnT7mrfpAjXNUsx5xRQRkren9MzI2oKUKB2gKJWwclEmX0XLk13LxfAFC7IHdz44MhD1vwqk5Q+Zof750VuKmkBN6xdb19CguXprkkT2T/Z1XlNHYzxL9Rqa9QzQUc/p4YdfQNlYrnAxbPm03QtUJ8D7rpY7n95pZIWwccEDWvFsCcDDh4mKbezNjGQ7Xk0ALK36mnyyqC7WSxLKbYmF2ujRV2X8dF+kQL6ls+iOKTgmVajCGq2kZauSIiVQBkdafwhW+8HvzRPsTU7LNfDBrMFOL3gIm58o4Yf/dsA2lvysK2A5kr2aIVolDEmiYvGCL"
+
+}
