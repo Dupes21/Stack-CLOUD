@@ -81,4 +81,4 @@ curl http://169.254.169.254/latest/meta-data/public-ipv4
 #Update wp-php config
 #mysql -u $DB_USER --password=$DB_PWD -h $DB_HOSTNAME $DB_NAME -e "UPDATE wp_options SET option_value='$WP_URL' WHERE option_name='siteurl' OR option_name='home'"
 sudo mysql -u admin --password=stackinc -h wordpressinstance.cuyp9p5zywip.us-east-1.rds.amazonaws.com wordpressdb -e "UPDATE wp_options SET option_value='http://`curl http://169.254.169.254/latest/meta-data/public-hostname/`/wordpress' WHERE option_name='siteurl' OR option_name='home'"
-#commit;
+EOF
