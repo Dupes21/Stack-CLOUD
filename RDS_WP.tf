@@ -18,10 +18,17 @@ resource "aws_instance" "my-rds-wp" {
   iam_instance_profile    =  "${aws_iam_instance_profile.test_profile.name}"
   key_name                =  "${aws_key_pair.ec2-key.id}"
   security_groups         =  [aws_security_group.wp_efs_sg.name]
-  user_data               =  "${file("bootstrap1.sh")}"
+  #user_data               =  "${file("bootstrap1.sh")}"
   #file_system_id         =  [aws_efs_file_system.wp_efs.id]
-  
-  tags = {
+  user_data               =  templatefile("bootstrap1.sh", {
+                                  DB_HOSTNAME=var.DB_HOSTNAME
+                                  WP_URL=var.WP_URL
+                                  DB_USER=var.DB_USER
+                                  DB_PWD=var.DB_PWD
+                                  DB_NAME=var.DB_NAME
+      })
+      
+    tags = {
     Name   = "RDS_WP" 
   
   }
