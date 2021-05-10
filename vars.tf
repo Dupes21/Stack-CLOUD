@@ -46,3 +46,8 @@ variable "AMI" {
 variable "INSTANCE_TYPE" {
   
 }
+variable "DB_HOSTNAME" {} 
+variable "WP_URL" {}
+variable "DB_USER" {}
+variable "DB_PWD" {}
+variable "DB_NAME" {}
