@@ -77,3 +77,13 @@ sudo systemctl start mariadb
 sudo systemctl status httpd
 sudo systemctl start httpd
 curl http://169.254.169.254/latest/meta-data/public-ipv4
+
+#Update wp-php config
+DB_HOSTNAME=`sudo grep DB_HOST /var/www/html/wp-config.php | cut -d ',' -f2 | awk -F "'"  '{ print $2 }'`
+WP_URL="http://`curl http://169.254.169.254/latest/meta-data/public-hostname/`/wordpress"
+DB_USER="admin"
+DB_PWD="stackinc"
+DB_NAME="wordpressdb"
+
+mysql -u $DB_USER --password=$DB_PWD -h $DB_HOSTNAME $DB_NAME -e "UPDATE wp_options SET option_value='$WP_URL' WHERE option_name='siteurl' OR option_name='home'"
+commit;
