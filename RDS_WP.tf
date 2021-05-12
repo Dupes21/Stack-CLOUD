@@ -7,7 +7,7 @@ Name = "Default VPC"
 }
 */
 
-
+/*
 #WordPress EC2 instance
 resource "aws_instance" "my-rds-wp" {
 
@@ -26,7 +26,7 @@ resource "aws_instance" "my-rds-wp" {
                                   RDS_ENDPOINT = var.RDS_ENDPOINT,
                                   DB_NAME      = var.DB_NAME,
                                   WP_URL       = var.WP_URL
-     })
+    })
  
       
     tags = {
@@ -34,6 +34,37 @@ resource "aws_instance" "my-rds-wp" {
   
   }
 }
+*/
+#Restoring Clixxdb snapshot
+
+resource "aws_db_instance" "prod" {
+  allocated_storage    = 10
+  engine               = "mysql"
+  engine_version       = "8.0.20"
+  instance_class       = "db.t2.micro"
+  name                 = "wordpressdb"
+  username             = "wordpressuser"
+  password             = "W3lcome123"
+  #db_subnet_group_name = "my_database_subnet_group"
+  #parameter_group_name = "default.mysql5.6"
+}
+
+data "aws_db_snapshot" "wordpressdbclixx" {
+  db_instance_identifier = aws_db_instance.prod.id
+  most_recent            = true
+}
+
+# Use the latest production snapshot to create a dev instance.
+resource "aws_db_instance" "dev" {
+  instance_class      = "db.t2.micro"
+  name                = "mydbdev"
+  snapshot_identifier = data.aws_db_snapshot.wordpressdbclixx.id
+
+  #lifecycle {
+   # ignore_changes = [snapshot_identifier]
+  #}
+}
+
 
 #Store state file in S3 bucket
 terraform {
