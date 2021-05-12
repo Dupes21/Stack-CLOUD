@@ -7,7 +7,7 @@ Name = "Default VPC"
 }
 */
 
-/*
+
 #WordPress EC2 instance
 resource "aws_instance" "my-rds-wp" {
 
@@ -34,9 +34,10 @@ resource "aws_instance" "my-rds-wp" {
   
   }
 }
-*/
+
 #Restoring Clixxdb snapshot
 
+/*
 resource "aws_db_instance" "prod" {
   allocated_storage    = 10
   engine               = "mysql"
@@ -48,8 +49,8 @@ resource "aws_db_instance" "prod" {
   #db_subnet_group_name = "my_database_subnet_group"
   #parameter_group_name = "default.mysql5.6"
   skip_final_snapshot = true
-  #final_snapshot_identifier = false
-}
+  #final_snapshot_identifier = true
+  }
 
 data "aws_db_snapshot" "wordpressdbclixx" {
   db_instance_identifier = aws_db_instance.prod.id
@@ -62,11 +63,11 @@ resource "aws_db_instance" "dev" {
   name                = "mydbdev"
   snapshot_identifier = data.aws_db_snapshot.wordpressdbclixx.id
 
-  #lifecycle {
-   # ignore_changes = [snapshot_identifier]
-  #}
+ # lifecycle {
+ #   ignore_changes = [aws_db_snapshot.wordpressdbclixx.id]
+#  }
 }
-
+*/
 
 #Store state file in S3 bucket
 terraform {
