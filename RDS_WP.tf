@@ -21,7 +21,12 @@ resource "aws_instance" "my-rds-wp" {
   #user_data               =  "${file("bootstrap1.sh")}"
   #file_system_id         =  [aws_efs_file_system.wp_efs.id]
   user_data               = templatefile("bootstrap3.sh",{
-                                  DB_USER = var.DB_USER })
+                                  DB_USER      = var.DB_USER,
+                                  DB_PWD       = var.DB_PWD,
+                                  RDS_ENDPOINT = var.RDS_ENDPOINT,
+                                  DB_NAME      = var.DB_NAME,
+                                  WP_URL       = var.WP_URL
+     })
  
       
     tags = {

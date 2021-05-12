@@ -84,5 +84,5 @@ curl http://169.254.169.254/latest/meta-data/public-ipv4
 #EOF
 #sudo mysql -u admin --password=stackinc -h wordpressinstance.cuyp9p5zywip.us-east-1.rds.amazonaws.com wordpressdb -e "UPDATE wp_options SET option_value='http://`curl http://169.254.169.254/latest/meta-data/public-hostname/`/wordpress' WHERE option_name='siteurl' OR option_name='home'"
 
-sudo mysql -u ${DB_USER} --password=stackinc -h wordpressinstance.cuyp9p5zywip.us-east-1.rds.amazonaws.com wordpressdb -e "UPDATE wp_options SET option_value='http://`curl http://169.254.169.254/latest/meta-data/public-hostname/`/wordpress' WHERE option_name='siteurl' OR option_name='home'"
+sudo mysql -u ${DB_USER} --password=${DB_PWD} -h ${RDS_ENDPOINT} ${DB_NAME} -e "UPDATE wp_options SET option_value='${WP_URL}' WHERE option_name='siteurl' OR option_name='home'"
 EOT
