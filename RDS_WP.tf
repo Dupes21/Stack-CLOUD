@@ -47,6 +47,8 @@ resource "aws_db_instance" "prod" {
   password             = "W3lcome123"
   #db_subnet_group_name = "my_database_subnet_group"
   #parameter_group_name = "default.mysql5.6"
+  skip_final_snapshot = true
+  #final_snapshot_identifier = false
 }
 
 data "aws_db_snapshot" "wordpressdbclixx" {
