@@ -49,7 +49,7 @@ resource "aws_db_instance" "prod" {
   #parameter_group_name = "default.mysql5.6"
 }
 
-data "aws_db_snapshot" "wordpressdbclixx" {
+data "aws_db_snapshot" "clixxdbsnap" {
   db_instance_identifier = aws_db_instance.prod.id
   most_recent            = true
 }
@@ -58,7 +58,7 @@ data "aws_db_snapshot" "wordpressdbclixx" {
 resource "aws_db_instance" "dev" {
   instance_class      = "db.t2.micro"
   name                = "mydbdev"
-  snapshot_identifier = data.aws_db_snapshot.wordpressdbclixx.id
+  snapshot_identifier = data.aws_db_snapshot.clixxdbsnap.id
 
   #lifecycle {
    # ignore_changes = [snapshot_identifier]
